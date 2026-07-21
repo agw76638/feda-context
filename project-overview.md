@@ -149,7 +149,7 @@ create table quiz_results (
 ## 🎨 UI / UX
 
 - 벨로그(velog) 벤치마킹: 태그/카테고리 기반 아카이브, 카드형 무한스크롤 피드, 마크다운 렌더링 중심의 미니멀 톤
-- 홈은 피드가 메인, 검색/주제등록은 버튼 클릭 시 모달로 노출 (빈 화면 방지, 헤더의 "기존 글 찾기" 검색과 역할 구분)
+- 홈은 AI 서비스 홈페이지처럼 카테고리 선택 + 키워드 입력창이 메인인 인풋 전용 화면 (피드 없음). 카드형 무한스크롤 피드는 전체 요약 노트 페이지가 담당
 - 반응형: 모바일 퍼스트, 카드 1열 스택
 
 ---
@@ -160,25 +160,24 @@ create table quiz_results (
 flowchart TD
   Signup["회원가입"] --> Done["가입완료"]
   Done --> Login["로그인"]
-  Login --> Home["홈: 전체 게시글 피드"]
-  Home -->|"카드 클릭"| Summary["요약본 노트 페이지"]
-  Home -->|"+ 새 주제 등록 버튼"| RegModal["주제 등록 모달"]
+  Login --> Home["홈: AI 인풋 (카테고리+키워드)"]
+  Home -->|"주제 등록/검색 제출"| Alan["Alan API 호출"]
+  Alan --> Summary["요약본 노트 페이지"]
+  Home -->|"헤더/사이드바 내비게이션"| AllSummary["전체 요약 노트 페이지"]
+  AllSummary -->|"카드 클릭"| Summary
   Home -->|"비로그인 상태 기능 접근"| AuthModal["로그인 권장 모달"]
   AuthModal --> Login
-  RegModal --> Alan["Alan API 호출"]
-  Alan --> Summary
   Summary --> QuizModal["퀴즈 모달"]
   Summary --> NoteWrite["학습노트 작성"]
   NoteWrite --> NoteDetail["학습노트 상세"]
   Summary --> Like["좋아요 / 북마크"]
-  Home --> AllSummary["전체 요약 노트 페이지"]
   NoteDetail --> My["마이페이지"]
   Like --> My
   QuizModal --> My
   My --> Home
 ```
 
-> ⚠️ **TBD**:
+> ⚠️ **TBD**: 요약본 노트 페이지(퀴즈) ↔ 학습노트 작성의 관계 (독립적인지, 노트 작성이 퀴즈 접근 조건인지)
 
 ---
 
@@ -187,10 +186,11 @@ flowchart TD
 ### MVP
 
 - 인증 (이메일+비번, 구글, 카카오)
-- 홈 피드 (카테고리 필터, 무한스크롤)
-- 주제 등록 → Alan 호출 → 학습 상세 생성
-- 학습 상세 (개념요약, 참고자료, 퀴즈, 좋아요/북마크)
-- 학습노트 작성/뷰 (topics 참조)
+- 홈 (카테고리 선택 + 키워드 입력, 주제 등록/검색 진입점)
+- 주제 등록 → Alan 호출 → 요약본 노트 생성
+- 요약본 노트 (개념요약, 참고자료, 좋아요/북마크) + 퀴즈 모달
+- 학습노트 작성/상세 (topics 참조)
+- 전체 요약 노트 페이지 (카테고리 필터, 무한스크롤 피드)
 - 마이페이지 (학습자료/노트/북마크)
 - 로딩·에러 처리 (명세 필수 항목)
 
