@@ -142,7 +142,7 @@ create table quiz_results (
 | Framework    | React (Vite)          | Next.js 필수 여부 **TBD**                    |
 | Language     | JavaScript            | TypeScript 도입은 학습 부담 고려해 보류 권장 |
 | DB / Backend | Supabase (PostgreSQL) | 명세에 명시됨                                |
-| CSS/UI       | MUI (기존 수강 스택)  | 명세의 Sass 요구사항과 병행 방식 **TBD**     |
+| CSS/UI       | TBD                   | **TBD**                                      |
 | AI           | Alan API              | 실시간 웹검색 기반 질의응답                  |
 
 ---
