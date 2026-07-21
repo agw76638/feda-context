@@ -160,9 +160,7 @@ flowchart TD
   Signup["회원가입"] --> Done["가입완료"]
   Done --> Login["로그인"]
   Login --> Home["홈: 전체 게시글 피드"]
-  Home -->|"카드 클릭"| Summary["요약본 노트 페이지"]
-  Home -->|"+ 새 주제 등록 버튼"| RegModal["주제 등록 모달"]
-  Home -->|"비로그인 상태 기능 접근"| AuthModal["로그인 권장 모달"]
+  Home -->AI 인풋
   AuthModal --> Login
   RegModal --> Alan["Alan API 호출"]
   Alan --> Summary
