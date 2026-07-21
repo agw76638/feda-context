@@ -159,8 +159,7 @@ create table quiz_results (
 flowchart TD
   Signup["회원가입"] --> Done["가입완료"]
   Done --> Login["로그인"]
-  Login --> Home["홈: 전체 게시글 피드"]
-  Home -->AI 인풋
+  Login --> Home
   AuthModal --> Login
   RegModal --> Alan["Alan API 호출"]
   Alan --> Summary
@@ -168,7 +167,7 @@ flowchart TD
   Summary --> NoteWrite["학습노트 작성"]
   NoteWrite --> NoteDetail["학습노트 상세"]
   Summary --> Like["좋아요 / 북마크"]
-  Home --> AllSummary["전체 요약 노트 페이지"]
+  Home --> AI 인풋["전체 요약 노트 페이지"]
   NoteDetail --> My["마이페이지"]
   Like --> My
   QuizModal --> My
